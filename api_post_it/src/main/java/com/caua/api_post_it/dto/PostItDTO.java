@@ -13,5 +13,5 @@ public class PostItDTO {
     private int id;
     private String title;
     private String description;
-    private UserModel autor;
+    private Long autor;
 }
