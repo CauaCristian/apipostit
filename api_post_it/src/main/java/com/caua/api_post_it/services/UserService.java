@@ -18,10 +18,18 @@ public class UserService {
     UserMapper userMapper;
     public List<UserDTO> findAll(){
         List<UserModel> listUserModel = userRepository.findAll();
-        List<UserDTO> listUserDTO = new ArrayList<>();
-        for (int i = 0; i < listUserModel.size(); i++) {
-            listUserDTO.add(userMapper.MapModelToDTO(listUserModel.get(i)));
-        }
-        return listUserDTO;
+        return userMapper.mapListModelToListDTO(listUserModel);
+    }
+    public UserDTO findByUsername(UserDTO userDTO){
+        return userMapper.mapModelToDTO(userRepository.findByUsername(userMapper.mapDTOToModel(userDTO)));
+    }
+    public UserDTO create(UserDTO userDTO){
+        return userMapper.mapModelToDTO(userRepository.save(userMapper.mapDTOToModel(userDTO)));
+    }
+    public UserDTO update(UserDTO userDTO){
+        return userMapper.mapModelToDTO(userRepository.save(userMapper.mapDTOToModel(userDTO)));
+    }
+    public void delete(UserDTO userDTO){
+        userRepository.delete(userMapper.mapDTOToModel(userDTO));
     }
 }
