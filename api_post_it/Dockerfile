@@ -6,10 +6,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN ls -la
-
-RUN mvn clean install
-
 FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
