@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table
+@Table(name = "post_It")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,9 +14,13 @@ import lombok.*;
 public class PostItModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true,nullable = false)
     private Long id;
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String description;
     @ManyToOne
-    private UserModel autor;
+    @JoinColumn(name = "author_id",nullable = false)
+    private UserModel author;
 }
